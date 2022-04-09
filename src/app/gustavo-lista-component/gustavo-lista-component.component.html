@@ -1,0 +1,46 @@
+<h2>Disciplinas</h2>
+<input id="id " type="string" placeholder="id" [(ngModel)]="id" />
+<input id="nome " type="text" placeholder="nome" [(ngModel)]="nome" />
+<input
+  id="diaSemana"
+  type="text"
+  placeholder="dia da semana"
+  [(ngModel)]="diaDaSemana"
+/>
+<input id="horario" type="text" placeholder="horario" [(ngModel)]="horario" />
+
+<input id="ementa" type="text" placeholder="ementa" [(ngModel)]="ementa" />
+
+<button
+  (click)="
+    disciplinas.add({
+      id: id,
+      nome: nome,
+      diaDaSemana: diaDaSemana,
+      horario: horario,
+      ementa: ementa
+    })
+  "
+>
+  +
+</button>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Dia da semana</th>
+    <th>Horário</th>
+    <th>X</th>
+  </tr>
+
+  <tr *ngFor="let disciplina of disciplinas.getList(); index as i">
+    <td>{{ disciplina.id }}</td>
+    <td>
+      <a [routerLink]="['/detalhes', i]">{{ disciplina.nome }}</a>
+    </td>
+    <td>{{ disciplina.diaDaSemana }}</td>
+    <td>{{ disciplina.horario }}</td>
+    <td><button (click)="disciplinas.delete(i)">X</button></td>
+  </tr>
+</table>
